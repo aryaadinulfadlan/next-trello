@@ -12,6 +12,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { LuLayout, LuActivity } from "react-icons/lu";
 import { FiCreditCard } from "react-icons/fi";
 import { AiOutlineSetting } from "react-icons/ai";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export interface Organization {
   id: string;
@@ -100,3 +101,14 @@ export default function NavItem({
     </AccordionItem>
   );
 }
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className="flex items-center gap-x-2">
+      <div className="w-10 h-10 relative">
+        <Skeleton className="h-full w-full absolute" />
+      </div>
+      <Skeleton className="h-10 w-full" />
+    </div>
+  );
+};
