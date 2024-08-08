@@ -17,7 +17,7 @@ const CreateBoard = zod.object({
   }),
 });
 
-export default async function createBoard(
+export default async function createBoardOld(
   prevState: State,
   formData: FormData
 ) {
