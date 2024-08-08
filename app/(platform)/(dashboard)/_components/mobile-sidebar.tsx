@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import Sidebar from "./sidebar";
+import ClientOnly from "@/components/ClientOnly";
 
 export default function MobileSidebar() {
   const pathname = usePathname();
@@ -50,7 +51,9 @@ export default function MobileSidebar() {
           <SheetTitle>
             <VisuallyHidden.Root>Dummy Title</VisuallyHidden.Root>
           </SheetTitle>
-          <Sidebar storageKey="t-sidebar-mobile-state" />
+          <ClientOnly>
+            <Sidebar storageKey="t-sidebar-mobile-state" />
+          </ClientOnly>
         </SheetContent>
       </Sheet>
     </>
