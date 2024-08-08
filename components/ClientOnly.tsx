@@ -5,7 +5,7 @@ interface Props {
   children: ReactNode;
 }
 
-export default function ClientOnly({ children, ...rest }: Props) {
+export default function ClientOnly({ children }: Props) {
   const [hasMounted, setHasMounted] = useState(false);
   useEffect(() => {
     setHasMounted(true);
@@ -14,5 +14,5 @@ export default function ClientOnly({ children, ...rest }: Props) {
   if (!hasMounted) {
     return null;
   }
-  return <div {...rest}>{children}</div>;
+  return <>{children}</>;
 }

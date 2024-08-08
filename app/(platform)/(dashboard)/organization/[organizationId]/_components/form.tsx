@@ -1,9 +1,9 @@
 "use client";
 
-import FormInput from "./form-input";
-import FormButton from "./form-button";
 import { useAction } from "@/hooks/use-action";
 import { createBoard } from "@/actions/create-board";
+import FormInput from "@/components/form/form-input";
+import FormSubmit from "@/components/form/form-submit";
 
 export default function Form() {
   const { execute, fieldErrors } = useAction(createBoard, {
@@ -21,26 +21,10 @@ export default function Form() {
 
   return (
     <form action={onSubmit}>
-      <FormInput errors={fieldErrors} />
-      {/* <div className="flex flex-col space-y-2">
-        <input
-          type="text"
-          id="title"
-          name="title"
-          placeholder="Enter board title"
-          className="border border-input p-1"
-        />
-        {state?.errors?.title ? (
-          <div>
-            {state.errors.title.map((err: string) => (
-              <p key={err} className="text-rose-500">
-                {err}
-              </p>
-            ))}
-          </div>
-        ) : null}
-      </div> */}
-      <FormButton />
+      <div className="flex flex-col space-y-2">
+        <FormInput id="title" errors={fieldErrors} label="Board Title" />
+      </div>
+      <FormSubmit>Save</FormSubmit>
     </form>
   );
 }
