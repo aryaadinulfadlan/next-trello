@@ -17,6 +17,8 @@ const handler = async (data: InputType): Promise<ReturnType> => {
   const { title } = data;
   let board;
   try {
+    // DIRECTLY RETURN AN ERROR
+    // throw new Error();
     board = await db.board.create({
       data: {
         title,
