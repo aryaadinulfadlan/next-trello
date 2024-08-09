@@ -6,6 +6,7 @@ const isProtected = createRouteMatcher([
   "/select-org",
   // "/organization/:id",    /organization/id
   "/organization(.*)", //organization/apapun/setelahini/icludes/only/organization
+  "/board/:id",
 ]);
 export default clerkMiddleware((auth, req) => {
   if (isProtected(req)) auth().protect();

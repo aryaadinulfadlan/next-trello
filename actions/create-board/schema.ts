@@ -9,4 +9,8 @@ export const CreateBoard = zod.object({
     .min(3, {
       message: "Title is minimum 3 letters",
     }),
+  image: zod.string({
+    required_error: "Image is required",
+    invalid_type_error: "Image is required",
+  }),
 });

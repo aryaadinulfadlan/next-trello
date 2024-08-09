@@ -18,9 +18,9 @@ interface FormSubmitProps {
 }
 export default function FormSubmit({
   children,
-  className,
-  disabled,
-  variant,
+  className = "",
+  disabled = false,
+  variant = "primary",
 }: FormSubmitProps) {
   const { pending } = useFormStatus();
   return (
