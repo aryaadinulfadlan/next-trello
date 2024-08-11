@@ -29,13 +29,13 @@ export default function FormPopover({
   const closeRef = useRef<ElementRef<"button">>(null);
   const { execute, fieldErrors } = useAction(createBoard, {
     onSuccess(data) {
-      console.log({ data });
+      // console.log({ data });
       toast.success("Board Created!");
       closeRef.current?.click();
       push(`/board/${data.id}`);
     },
     onError(error) {
-      console.log({ error });
+      // console.log({ error });
       toast.error(error);
       closeRef.current?.click();
     },

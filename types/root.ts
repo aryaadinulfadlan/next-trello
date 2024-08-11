@@ -1,3 +1,4 @@
+import { Card, List } from "@prisma/client";
 import { ReactNode } from "react";
 
 export interface ILayout {
@@ -13,3 +14,6 @@ export interface IPageWithParams<TParams, TSearchParams> {
   params: TParams;
   searchParams: TSearchParams;
 }
+
+export type ListWithCards = List & { cards: Card[] };
+export type CardWithLists = Card & { lists: List[] };
