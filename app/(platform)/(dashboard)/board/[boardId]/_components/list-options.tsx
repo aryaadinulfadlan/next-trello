@@ -1,5 +1,6 @@
 "use client";
 
+import { copyList } from "@/actions/copy-list";
 import { deleteList } from "@/actions/delete-list";
 import FormSubmit from "@/components/form/form-submit";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,14 @@ export default function ListOptions({ data, onAddCard }: ListOptionsProps) {
       toast.error(error);
     },
   });
+  const { execute: executeCopy } = useAction(copyList, {
+    onSuccess(data) {
+      toast.success(`List "${data.title}" copied`);
+    },
+    onError(error) {
+      toast.error(error);
+    },
+  });
   const onDelete = (formData: FormData) => {
     const id = formData.get("id") as string;
     const boardId = formData.get("boardId") as string;
@@ -37,6 +46,12 @@ export default function ListOptions({ data, onAddCard }: ListOptionsProps) {
     executeDelete({ boardId, id });
   };
 
+  const onCopy = (formData: FormData) => {
+    const id = formData.get("id") as string;
+    const boardId = formData.get("boardId") as string;
+    closeRef.current?.click();
+    executeCopy({ boardId, id });
+  };
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -63,7 +78,7 @@ export default function ListOptions({ data, onAddCard }: ListOptionsProps) {
         >
           Add Card
         </Button>
-        <form action="">
+        <form action={onCopy}>
           <input hidden name="id" id="id" defaultValue={data.id} />
           <input
             hidden
