@@ -7,6 +7,7 @@ import { ListWithCards } from "@/types/root";
 import { ElementRef, useRef, useState } from "react";
 import { toast } from "sonner";
 import { useEventListener } from "usehooks-ts";
+import ListOptions from "./list-options";
 
 interface ListHeaderProps {
   data: ListWithCards;
@@ -54,6 +55,7 @@ export default function ListHeader({ data }: ListHeaderProps) {
     }
     execute({ title, boardId, id });
   };
+  const onAddCard = () => {};
   useEventListener("keydown", onKeyDown);
   return (
     <div className="pt-2 px-2 text-sm font-semibold flex justify-between items-start gap-x-2">
@@ -85,6 +87,7 @@ export default function ListHeader({ data }: ListHeaderProps) {
           {title}
         </div>
       )}
+      <ListOptions data={data} onAddCard={onAddCard} />
     </div>
   );
 }
