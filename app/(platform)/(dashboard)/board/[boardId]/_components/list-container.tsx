@@ -44,7 +44,7 @@ export default function ListContainer({ lists, boardId }: ListContainerProps) {
   });
   const onDragEnd = (result: DropResult) => {
     const { destination, source, type } = result;
-    console.log({ destination, source, type });
+    // console.log({ destination, source, type });
     if (!destination) {
       return;
     }
@@ -102,23 +102,32 @@ export default function ListContainer({ lists, boardId }: ListContainerProps) {
         executeUpdateCardOrder({ boardId, items: reorderedCards });
       } else {
         // moving card to the another list
-
-        console.log({ sourceCard: sourceList.cards, destCard: destList.cards });
         // 1. remove card from the source list
         const [movedCard] = sourceList.cards.splice(source.index, 1);
         // 2. assign the new listId to the moved card
         movedCard.listId = destination.droppableId;
-        // 3. add card to the destination list
+        // 3. add moved card to the destination list
         destList.cards.splice(destination.index, 0, movedCard);
-        // 4. assign new order value to sourceList.cards
-        sourceList.cards.forEach((card, idx) => ({ ...card, order: idx + 1 }));
-        // 5. update the order for each card in the destination list
-        destList.cards.forEach((card, idx) => ({ ...card, order: idx + 1 }));
+        // 4. assign new order value to the source list
+        const newSourceList = sourceList.cards.map((card, idx) => ({
+          ...card,
+          order: idx + 1,
+        }));
+        // 5. assign new order value to the destination list
+        const newDestList = destList.cards.map((card, idx) => ({
+          ...card,
+          order: idx + 1,
+        }));
+        // 6. update the real sourceList & destList
+        sourceList.cards = newSourceList;
+        destList.cards = newDestList;
+
         setOrderedData(newOrderedData);
-        console.log({ sourceCard: sourceList.cards, destCard: destList.cards });
+
+        // 7. send source array & destination array to make sure they all will be updated
         executeUpdateCardOrder({
           boardId,
-          items: [...sourceList.cards, ...destList.cards],
+          items: [...newSourceList, ...newDestList],
         });
       }
     }
@@ -127,7 +136,7 @@ export default function ListContainer({ lists, boardId }: ListContainerProps) {
     setOrderedData(lists);
   }, [lists]);
 
-  console.log({ orderedData });
+  // console.log({ orderedData });
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Droppable droppableId="lists" type="list" direction="horizontal">
