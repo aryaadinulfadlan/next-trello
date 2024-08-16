@@ -16,4 +16,4 @@ export interface IPageWithParams<TParams, TSearchParams> {
 }
 
 export type ListWithCards = List & { cards: Card[] };
-export type CardWithLists = Card & { lists: List[] };
+export type CardWithLists = Card & { list: List };

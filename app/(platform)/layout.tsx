@@ -1,3 +1,6 @@
+import ClientOnly from "@/components/ClientOnly";
+import CardModal from "@/components/modals/card-modal";
+import QueryProvider from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";
 import { ILayout } from "@/types/root";
 import { ClerkProvider } from "@clerk/nextjs";
@@ -5,8 +8,13 @@ import { ClerkProvider } from "@clerk/nextjs";
 export default function PlatformLayout({ children }: ILayout) {
   return (
     <ClerkProvider>
-      {children}
-      <Toaster />
+      <QueryProvider>
+        <Toaster />
+        <ClientOnly>
+          <CardModal />
+        </ClientOnly>
+        {children}
+      </QueryProvider>
     </ClerkProvider>
   );
 }

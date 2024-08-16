@@ -1,5 +1,6 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+import { apiRoutePrefix } from "./route";
 
 const isProtected = createRouteMatcher([
   "/dashboard",
@@ -10,7 +11,11 @@ const isProtected = createRouteMatcher([
 ]);
 export default clerkMiddleware((auth, req) => {
   if (isProtected(req)) auth().protect();
-  if (auth().userId && !isProtected(req)) {
+  if (
+    auth().userId &&
+    !isProtected(req) &&
+    !req.nextUrl.pathname.startsWith(apiRoutePrefix)
+  ) {
     let path = "/select-org";
     if (auth().orgId) {
       path = `/organization/${auth().orgId}`;
