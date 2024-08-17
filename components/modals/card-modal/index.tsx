@@ -6,7 +6,9 @@ import { fetcher } from "@/lib/fetcher";
 import { CardWithLists } from "@/types/root";
 import * as VisuallyHidden from "@radix-ui/react-visually-hidden";
 import { useQuery } from "@tanstack/react-query";
-import Header from "./header";
+import CardHeader from "./header";
+import CardDescription from "./description";
+import CardActions from "./actions";
 
 export default function CardModal() {
   const { isOpen, onClose, onOpen, id } = useCardModal();
@@ -30,7 +32,23 @@ export default function CardModal() {
         <VisuallyHidden.Root>Dummy Title</VisuallyHidden.Root>
       </DialogTitle>
       <DialogContent aria-describedby={undefined}>
-        {!cardData ? <Header.Skeleton /> : <Header data={cardData} />}
+        {!cardData ? <CardHeader.Skeleton /> : <CardHeader card={cardData} />}
+        <div className="grid md:grid-cols-4 md:gap-4">
+          <div className="col-span-3">
+            <div className="w-full space-y-6">
+              {!cardData ? (
+                <CardDescription.Skeleton />
+              ) : (
+                <CardDescription card={cardData} />
+              )}
+            </div>
+          </div>
+          {!cardData ? (
+            <CardActions.Skeleton />
+          ) : (
+            <CardActions card={cardData} />
+          )}
+        </div>
       </DialogContent>
     </Dialog>
   );

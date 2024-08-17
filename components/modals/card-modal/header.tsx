@@ -11,14 +11,14 @@ import { ElementRef, useRef, useState } from "react";
 import { LuLayout } from "react-icons/lu";
 import { toast } from "sonner";
 
-interface HeaderProps {
-  data: CardWithLists;
+interface CardHeaderProps {
+  card: CardWithLists;
 }
-export default function Header({ data }: HeaderProps) {
+export default function CardHeader({ card }: CardHeaderProps) {
   const queryClient = useQueryClient();
   const { boardId } = useParams<{ boardId: string }>();
   const inputRef = useRef<ElementRef<"input">>(null);
-  const [title, setTitle] = useState(data.title);
+  const [title, setTitle] = useState(card.title);
   const { execute } = useAction(updateCard, {
     onSuccess(data) {
       queryClient.invalidateQueries({
@@ -40,7 +40,7 @@ export default function Header({ data }: HeaderProps) {
     execute({
       title: titleForm,
       boardId,
-      id: data.id,
+      id: card.id,
     });
   };
   return (
@@ -57,14 +57,14 @@ export default function Header({ data }: HeaderProps) {
           />
         </form>
         <p className="text-sm text-muted-foreground">
-          in list <span className="underline">{data.list.title}</span>
+          in list <span className="underline">{card.list.title}</span>
         </p>
       </div>
     </div>
   );
 }
 
-Header.Skeleton = function HeaderSkeleton() {
+CardHeader.Skeleton = function CardHeaderSkeleton() {
   return (
     <div className="flex items-start gap-x-3 mb-6">
       <Skeleton className="h-6 w-6 mt-1 bg-neutral-400" />
