@@ -7,3 +7,8 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 "vercel-build": "prisma generate && prisma migrate deploy && next build",
 "vercel-build": "prisma generate && prisma migrate deploy && next build",
 "prisma:generate": "prisma generate"
+
+npx prisma migrate reset
+npx prisma generate
+npx prisma db push
+npx prisma studio
