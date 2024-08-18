@@ -1,4 +1,4 @@
-import Hint from "@/components/Hint";
+import Hint from "@/components/hint";
 import FormPopover from "@/components/form/form-popover";
 import { Skeleton } from "@/components/ui/skeleton";
 import { db } from "@/lib/db";

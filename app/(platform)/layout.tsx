@@ -1,4 +1,4 @@
-import ClientOnly from "@/components/ClientOnly";
+import ClientOnly from "@/components/client-only";
 import CardModal from "@/components/modals/card-modal";
 import QueryProvider from "@/components/providers/query-provider";
 import { Toaster } from "@/components/ui/sonner";

@@ -1,10 +1,10 @@
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 import { Button } from "@/components/ui/button";
 import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import { FaPlus } from "react-icons/fa";
 import MobileSidebar from "./mobile-sidebar";
-import ClientOnly from "@/components/ClientOnly";
 import FormPopover from "@/components/form/form-popover";
+import ClientOnly from "@/components/client-only";
 
 export default function Navbar() {
   return (

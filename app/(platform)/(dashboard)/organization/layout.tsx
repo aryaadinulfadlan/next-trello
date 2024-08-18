@@ -1,6 +1,6 @@
 import { ILayout } from "@/types/root";
 import Sidebar from "../_components/sidebar";
-import ClientOnly from "@/components/ClientOnly";
+import ClientOnly from "@/components/client-only";
 
 export default function OrganizationLayout({ children }: ILayout) {
   return (

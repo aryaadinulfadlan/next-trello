@@ -17,3 +17,14 @@ export interface IPageWithParams<TParams, TSearchParams> {
 
 export type ListWithCards = List & { cards: Card[] };
 export type CardWithLists = Card & { list: List };
+
+export enum ACTION {
+  CREATE = "CREATE",
+  UPDATE = "UPDATE",
+  DELETE = "DELETE",
+}
+export enum ENTITY_TYPE {
+  BOARD = "BOARD",
+  LIST = "LIST",
+  CARD = "CARD",
+}
