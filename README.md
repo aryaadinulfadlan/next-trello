@@ -12,3 +12,5 @@ npx prisma migrate reset
 npx prisma generate
 npx prisma db push
 npx prisma studio
+
+[STRIPE_ERROR] Error: You can’t create a portal session in test mode until you save your customer portal settings in test mode at https://dashboard.stripe.com/test/settings/billing/portal.
