@@ -17,7 +17,7 @@ export default function Info() {
           priority
           fill
           sizes="auto"
-          src={organization!.imageUrl}
+          src={organization?.imageUrl ?? ""}
           alt="Organization"
           className="rounded-md object-cover"
         />
