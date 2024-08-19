@@ -9,6 +9,7 @@ import React from "react";
 import { LuHelpCircle, LuUser2 } from "react-icons/lu";
 import { getAvailableCount } from "@/lib/org-limit";
 import { MAX_FREE_BOARDS } from "@/constants/boards";
+import { checkSubscription } from "@/lib/subscription";
 
 export default async function BoardList() {
   const { orgId } = auth();
@@ -24,6 +25,7 @@ export default async function BoardList() {
     },
   });
   const availableCount = await getAvailableCount();
+  const isPro = await checkSubscription();
   return (
     <div className="space-y-4">
       <div className="flex items-center font-semibold text-lg text-neutral-700">
@@ -48,9 +50,11 @@ export default async function BoardList() {
             className="aspect-video relative h-full w-full bg-muted rounded-sm flex flex-col gap-y-1 items-center justify-center hover:opacity-75 transition"
           >
             <p className="text-sm">Create new board</p>
-            <span className="text-xs">{`${
-              MAX_FREE_BOARDS - availableCount
-            } remaining`}</span>
+            <span className="text-xs">
+              {isPro
+                ? "Unlimited"
+                : `${MAX_FREE_BOARDS - availableCount} remaining`}
+            </span>
             <Hint
               sideOffset={40}
               description={`Free Workspaces can have up to 5 open boards. For unlimited boards upgrade this workspace.`}
