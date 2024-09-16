@@ -10,7 +10,13 @@ export default function Logo() {
   return (
     <Link href={"/"}>
       <div className="hover:opacity-75 transition items-center gap-x-2 hidden md:flex">
-        <Image src={LogoImg} alt="Logo" height={30} width={30} />
+        <Image
+          src={LogoImg}
+          alt="Logo"
+          // height={30}
+          // width={30}
+          className="w-[30px] h-[30px]"
+        />
         <p
           className={cn(
             "text-lg font-bold text-neutral-700 pb-1",
