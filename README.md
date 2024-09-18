@@ -1,22 +1,14 @@
-## Route Concept
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-/docs/page.tsx => localhost:3000/docs BASIC
-/docs/main/page.tsx => localhost:3000/docs/main NESTED
-/docs/[docId]/page.tsx => localhost:3000/docs/{docId} DYNAMIC
-/docs/[...slug]/page.tsx => localhost:3000/docs/apa/aja/bisa (kecuali /docs itu sendiri) CATCH ALL SEGMENTS
-/docs/[[...slug]]/page.tsx => localhost:3000/docs/apa/aja/bisa (termasuk /docs itu sendiri) OPTIONAL CATCH ALL SEGMENTS
+### Demo App: https://next-trello-like.vercel.app
 
-## Getting Started
+## Tech Stack:
 
-"postinstall": "prisma generate"
-// package.json scripts section
-"vercel-build": "prisma generate && prisma migrate deploy && next build",
-"vercel-build": "prisma generate && prisma migrate deploy && next build",
-"prisma:generate": "prisma generate"
-
-npx prisma migrate reset
-npx prisma generate
-npx prisma db push
-npx prisma studio
-
-[STRIPE_ERROR] Error: You can’t create a portal session in test mode until you save your customer portal settings in test mode at https://dashboard.stripe.com/test/settings/billing/portal.
+1. Next JS 14.2.3
+2. Fully TypeScript
+3. Clerk Authentication
+4. Tailwind CSS
+5. Neon Tech (Cloud Database)
+6. Postgre SQL with Prisma Adapter
+7. Shadcn UI
+8. Zustand
